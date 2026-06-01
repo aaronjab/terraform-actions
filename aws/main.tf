@@ -143,3 +143,13 @@ module "http_api" {
     }
   }
 }
+
+action "aws_lambda_invoke" "api_handler" {
+  config {
+    function_name = aws_lambda_function.api_handler.function_name
+    payload = jsonencode({
+      message = "Invoke lambda from action",
+      type    = "test"
+    })
+  }
+}
